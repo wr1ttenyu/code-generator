@@ -1,0 +1,7 @@
+<table tableName="${tableName}" domainObjectName="${domainName}">
+ <property name="useActualColumnNames" value="false"/>
+ <property name="enableSelectByExample" value="false"/>
+ <property name="enableDeleteByExample" value="false"/>
+ <property name="enableCountByExample" value="false"/>
+ <property name="enableUpdateByExample" value="false"/>
+</table>

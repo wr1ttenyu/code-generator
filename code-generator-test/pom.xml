@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>wr1ttenyu.f1nal.study.utils</groupId>
+        <artifactId>code-generator</artifactId>
+        <version>0.0.1</version>
+    </parent>
+
+    <artifactId>code-generator-test</artifactId>
+    <version>0.0.1</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>wr1ttenyu.f1nal.study.utils</groupId>
+            <artifactId>code-generator-web</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <!-- 因为springboot打出的jar包不是规则jar包，test中引入web工程中的类，在install的时候在web jar中找不到
+                        所以跳过编译 test 工程中的代码-->
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

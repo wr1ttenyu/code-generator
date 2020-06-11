@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <classPathEntry location="mysql-connector-java-8.0.15.jar"/>
+    <context id="DB2Tables" targetRuntime="MyBatis3Simple"> <!-- optional，旨在创建class时，对注释进行控制 -->
+        <commentGenerator
+                type="wr1ttenyu.f1nal.study.code.generator.util.mybatis.MybatisCommentGenerator"> <!--<property name="suppressDate" value="true"/>--> <!--<property name="suppressAllComments" value="true" />--> <!-- 是否生成注释代时间戳-->
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://122.51.219.124:3306/wr1ttenyu" userId="root"
+                        password="p@ssword"></jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <javaModelGenerator targetPackage="wr1ttenyu.code.generator.test.dal.pojo" targetProject="H:\\src">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <sqlMapGenerator targetPackage="wr1ttenyu.code.generator.test.dal.mapper" targetProject="H:\\src">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="wr1ttenyu.code.generator.test.dal.mapper"
+                             targetProject="H:\\src">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <table tableName="u_user" domainObjectName="UUser">
+            <property name="useActualColumnNames" value="false"/>
+            <property name="enableSelectByExample" value="false"/>
+            <property name="enableDeleteByExample" value="false"/>
+            <property name="enableCountByExample" value="false"/>
+            <property name="enableUpdateByExample" value="false"/>
+        </table>
+    </context>
+</generatorConfiguration>

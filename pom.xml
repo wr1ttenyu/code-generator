@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  ~
+  ~   Licensed to the Apache Software Foundation (ASF) under one or more
+  ~   contributor license agreements.  See the NOTICE file distributed with
+  ~   this work for additional information regarding copyright ownership.
+  ~   The ASF licenses this file to You under the Apache License, Version 2.0
+  ~   (the "License"); you may not use this file except in compliance with
+  ~   the License.  You may obtain a copy of the License at
+  ~
+  ~       http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~   Unless required by applicable law or agreed to in writing, software
+  ~   distributed under the License is distributed on an "AS IS" BASIS,
+  ~   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~   See the License for the specific language governing permissions and
+  ~   limitations under the License.
+  ~
+  --><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <groupId>wr1ttenyu.f1nal.study.utils</groupId>
+    <version>0.0.1</version>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>code-generator</artifactId>
+    <packaging>pom</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <spring.boot.dependencies.version>2.2.4.RELEASE</spring.boot.dependencies.version>
+        <slf4j.version>1.7.25</slf4j.version>
+        <logback.classic.version>1.2.3</logback.classic.version>
+        <lombok.version>1.18.8</lombok.version>
+        <mybatis.spring.boot.start.version>2.1.0</mybatis.spring.boot.start.version>
+        <!--<mysql.connector.version>5.1.31</mysql.connector.version>-->
+        <mysql.connector.version>8.0.15</mysql.connector.version>
+        <druid.spring.boot.start.version>1.1.20</druid.spring.boot.start.version>
+        <com.alibaba.fastjson.version>1.2.62</com.alibaba.fastjson.version>
+        <wr1ttenyu.tinyplat.springboot.starter.kafka.version>1.0-SNAPSHOT</wr1ttenyu.tinyplat.springboot.starter.kafka.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.classic.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.spring.boot.start.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.spring.boot.start.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.connector.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${com.alibaba.fastjson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>wr1ttenyu.tinyplat.springboot.starter</groupId>
+                <artifactId>kafka</artifactId>
+                <version>${wr1ttenyu.tinyplat.springboot.starter.kafka.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-archetype-plugin</artifactId>
+                <version>3.1.2</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <includeEmptyDirs>true</includeEmptyDirs>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+<modules>  <module>code-generator-biz-prod</module>
+    <module>code-generator-common-dal</module>
+    <module>code-generator-common-service-facade</module>
+    <module>code-generator-common-service-integration</module>
+    <module>code-generator-common-util</module>
+    <module>code-generator-core-model</module>
+    <module>code-generator-test</module>
+    <module>code-generator-web</module>
+  </modules>
+</project>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>wr1ttenyu.f1nal.study.utils</groupId>
+        <artifactId>code-generator</artifactId>
+        <version>0.0.1</version>
+    </parent>
+
+    <artifactId>code-generator-web</artifactId>
+    <version>0.0.1</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>wr1ttenyu.f1nal.study.utils</groupId>
+            <artifactId>code-generator-biz-prod</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>wr1ttenyu.f1nal.study.utils</groupId>
+            <artifactId>code-generator-common-util</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>wr1ttenyu.f1nal.study.utils</groupId>
+            <artifactId>code-generator-common-service-integration</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>wr1ttenyu.f1nal.study.utils</groupId>
+            <artifactId>code-generator-core-model</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <!-- mvn clean package -Plocal -->
+            <!-- 不同环境Profile的唯一id -->
+            <id>local</id>
+            <properties>
+                <!-- profiles.active是自定义的字段（名字随便起），自定义字段可以有多个 -->
+                <profiles.active>local</profiles.active>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <profiles.active>test</profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <profiles.active>prod</profiles.active>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources/</directory>
+                <!-- 打包时先排除掉三个文件夹 -->
+                <excludes>
+                    <exclude>local/*</exclude>
+                    <exclude>prod/*</exclude>
+                    <exclude>test/*</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <!-- 根据不同的环境，把对应文件夹里的配置文件打包 -->
+                <directory>src/main/resources/environment/${profiles.active}</directory>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.2.4.RELEASE</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <excludeGroupIds>org.projectlombok</excludeGroupIds>
+                    <!-- 如果将这个配置设置为 true，打包出来的 jar/war 就是 可执行 的了, 可以作为服务在linux中启动，
+                         完全可执行 的 jar/war 在文件前面嵌入了个 额外的脚本，这就使得有些命令会执行失败，比如 jar -xf
+                         将Spring Boot项目打包部署，如果使用 jar -xf 等解压命令，一定要注意
+                         springboot的maven插件 spring-boot-maven-plugin 的 executable 配置一定要设置为 false -->
+                    <executable>false</executable>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
