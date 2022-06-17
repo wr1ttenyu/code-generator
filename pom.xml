@@ -35,7 +35,7 @@
         <!--<mysql.connector.version>5.1.31</mysql.connector.version>-->
         <mysql.connector.version>8.0.15</mysql.connector.version>
         <druid.spring.boot.start.version>1.1.20</druid.spring.boot.start.version>
-        <com.alibaba.fastjson.version>1.2.62</com.alibaba.fastjson.version>
+        <com.alibaba.fastjson.version>1.2.83</com.alibaba.fastjson.version>
         <wr1ttenyu.tinyplat.springboot.starter.kafka.version>1.0-SNAPSHOT</wr1ttenyu.tinyplat.springboot.starter.kafka.version>
     </properties>
 
